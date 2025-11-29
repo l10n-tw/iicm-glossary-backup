@@ -3,9 +3,11 @@ from pathlib import Path
 from openpyxl import Workbook
 from openpyxl.utils import get_column_letter
 
+ARTIFACT_DIR = Path("artifacts")
+
 def main():
-    csv_dir = Path("iicm-glossary-csv")
-    output_file = "iicm_glossary.xlsx"
+    csv_dir = ARTIFACT_DIR / "iicm-glossary-csv"
+    output_file = ARTIFACT_DIR / "iicm_glossary.xlsx"
     
     # Get all CSV files and sort them alphabetically
     csv_files = sorted(csv_dir.glob("termb_*.csv"))

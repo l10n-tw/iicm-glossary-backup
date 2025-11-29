@@ -37,8 +37,9 @@ Table: `glossary`
 
 | 欄位名稱     | 欄位類型       | 欄位描述               | PK/FK |
 | ------------ | -------------- | ---------------------- | ----- |
-| `id`         | `integer`      | 詞彙表上的原始編號     | PK    |
 | `letter`     | `char(1)`      | 詞彙表上的原始字母分類 | PK    |
+| `id`         | `integer`      | 詞彙表上的原始編號     | PK    |
+| `term`       | `varchar(255)` | 原始詞彙 | |
 | `term_tw`    | `varchar(255)` | 臺灣用語               |       |
 | `term_cn`    | `varchar(255)` | 大陸用語               |       |
 | `term_other` | `varchar(255)` | 其他用語               |       |

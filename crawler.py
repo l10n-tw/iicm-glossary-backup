@@ -1,11 +1,13 @@
 from pathlib import Path
 import httpx
 
+ARTIFACT_DIR = Path("artifacts")
 page_url_template = "https://web.archive.org/web/http://www.iicm.org.tw/term/termb_%s.htm"
 letters = ['0'] + [chr(i) for i in range(ord('A'), ord('Z') + 1)]
 
+
 def main():
-    dist = Path("iicm-glossary")
+    dist = ARTIFACT_DIR / "iicm-glossary-html"
     dist.mkdir(exist_ok=True)
 
     client = httpx.Client(follow_redirects=True)

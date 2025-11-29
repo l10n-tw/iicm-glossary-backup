@@ -7,6 +7,8 @@ import html
 from pathlib import Path
 from selectolax.parser import HTMLParser
 
+ARTIFACT_DIR = Path("artifacts")
+
 
 def clean_text(text: str) -> str:
     """Clean text: remove HTML entities and whitespace"""
@@ -75,8 +77,8 @@ def parse_html_to_csv(html_file: Path, csv_file: Path):
 
 def main():
     # read files in iicm-glossary directory
-    files = Path("iicm-glossary").glob("*.htm")
-    output_dir = Path("iicm-glossary-csv")
+    files = (ARTIFACT_DIR / "iicm-glossary-html").glob("*.htm")
+    output_dir = ARTIFACT_DIR / "iicm-glossary-csv"
     output_dir.mkdir(exist_ok=True)
 
     for file in files:

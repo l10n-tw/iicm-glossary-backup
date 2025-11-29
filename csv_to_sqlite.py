@@ -34,18 +34,20 @@ def create_database(db_path: Path):
     # Create table
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS glossary (
-            id INTEGER NOT NULL,
             letter CHAR(1) NOT NULL,
+            id INTEGER NOT NULL,
+            term VARCHAR(255),
             term_tw VARCHAR(255),
             term_cn VARCHAR(255),
             term_other VARCHAR(255),
-            PRIMARY KEY (id, letter)
+            PRIMARY KEY (letter, id)
         )
     """)
     
     # Create indexes to improve query performance
-    cursor.execute("CREATE INDEX IF NOT EXISTS idx_letter ON glossary(letter)")
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_id ON glossary(id)")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_letter ON glossary(letter)")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_term ON glossary(term)")
     
     conn.commit()
     conn.close()
@@ -74,16 +76,17 @@ def import_csv_to_db(csv_file: Path, db_path: Path, letter: str):
             try:
                 # Parse CSV row
                 id_value = int(row["編號"])
-                term_other = row["原文"].strip() if row["原文"] else None
+                term = row["原文"].strip() if row["原文"] else None
                 term_tw = row["臺灣用語"].strip() if row["臺灣用語"] else None
                 term_cn = row["大陸用語"].strip() if row["大陸用語"] else None
+                term_other = row["其他用語"].strip() if row["其他用語"] else None
                 
                 # Insert data (using INSERT OR REPLACE to handle duplicate keys)
                 cursor.execute("""
                     INSERT OR REPLACE INTO glossary 
-                    (id, letter, term_tw, term_cn, term_other)
-                    VALUES (?, ?, ?, ?, ?)
-                """, (id_value, letter, term_tw, term_cn, term_other))
+                    (letter, id, term, term_tw, term_cn, term_other)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                """, (letter, id_value, term, term_tw, term_cn, term_other))
                 
                 inserted_count += 1
                 
@@ -100,8 +103,8 @@ def import_csv_to_db(csv_file: Path, db_path: Path, letter: str):
 
 def main():
     # Set paths
-    csv_dir = Path("iicm-glossary-csv")
-    db_path = Path("iicm_glossary.db")
+    csv_dir = Path("artifacts/iicm-glossary-csv")
+    db_path = Path("artifacts/iicm_glossary.db")
     
     # Check if CSV directory exists
     if not csv_dir.exists():
