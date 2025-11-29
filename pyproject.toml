@@ -1,0 +1,12 @@
+[project]
+name = "iicm-glossary"
+version = "0.1.0"
+description = "中華民國資訊學會詞彙表備份"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "httpx>=0.28.1",
+    "openpyxl>=3.1.5",
+    "pandas>=2.3.3",
+    "selectolax>=0.4.4",
+]
