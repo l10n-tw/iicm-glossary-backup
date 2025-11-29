@@ -9,6 +9,8 @@ from pathlib import Path
 import re
 
 
+ARTIFACT_DIR = Path("artifacts")
+
 def extract_letter_from_filename(filename: str) -> str:
     """
     Extract letter from filename
@@ -109,8 +111,8 @@ def import_csv_to_db(csv_file: Path, db_path: Path, letter: str):
 
 def main():
     # Set paths
-    csv_dir = Path("artifacts/iicm-glossary-csv")
-    db_path = Path("artifacts/iicm_glossary.db")
+    csv_dir = ARTIFACT_DIR / "iicm-glossary-csv"
+    db_path = ARTIFACT_DIR / "iicm_glossary.db"
 
     # Check if CSV directory exists
     if not csv_dir.exists():
