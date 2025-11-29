@@ -44,6 +44,8 @@ Table: `glossary`
 | `term_cn`    | `varchar(255)` | 大陸用語               |       |
 | `term_other` | `varchar(255)` | 其他用語               |       |
 
+Indexes: `{letter}`, `{id}`, `{term}`
+
 ## Excel 檔案結構
 
 ![excel structure](./assets/excel.webp)
