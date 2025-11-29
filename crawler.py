@@ -2,8 +2,10 @@ from pathlib import Path
 import httpx
 
 ARTIFACT_DIR = Path("artifacts")
-page_url_template = "https://web.archive.org/web/http://www.iicm.org.tw/term/termb_%s.htm"
-letters = ['0'] + [chr(i) for i in range(ord('A'), ord('Z') + 1)]
+page_url_template = (
+    "https://web.archive.org/web/http://www.iicm.org.tw/term/termb_%s.htm"
+)
+letters = ["0"] + [chr(i) for i in range(ord("A"), ord("Z") + 1)]
 
 
 def main():
@@ -27,6 +29,7 @@ def main():
         # save html to file
         with open(dist / f"termb_{letter}.htm", "w", encoding="utf8") as f:
             f.write(html)
+
 
 if __name__ == "__main__":
     main()

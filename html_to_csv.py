@@ -2,6 +2,7 @@
 """
 Convert IICM glossary HTML files to CSV format
 """
+
 import csv
 import html
 from pathlib import Path
@@ -22,7 +23,7 @@ def clean_text(text: str) -> str:
 def parse_html_to_csv(html_file: Path, csv_file: Path):
     """
     Parse HTML file and convert to CSV
-    
+
     Args:
         html_file: Input HTML file path
         csv_file: Output CSV file path
@@ -30,39 +31,39 @@ def parse_html_to_csv(html_file: Path, csv_file: Path):
     # Read HTML file
     with open(html_file, "r", encoding="utf-8") as f:
         html_content = f.read()
-    
+
     # Parse HTML using selectolax
     parser = HTMLParser(html_content)
-    
+
     # Find table
     table = parser.css_first("table")
     if not table:
         raise ValueError("Table element not found")
-    
+
     # Prepare CSV writing
     with open(csv_file, "w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f)
-        
+
         # Write header
         header = ["編號", "原文", "臺灣用語", "大陸用語", "其他用語"]
         writer.writerow(header)
-        
+
         # Find all data rows (skip header row)
         rows = table.css("tr")
-        
+
         for row in rows:
             # Get all td elements in this row
             cells = row.css("td")
-            
+
             # Skip header row (header row td usually has align="center" attribute)
             if len(cells) == 0:
                 continue
-            
+
             # Check if it's a header row (first td content is "編號")
             first_cell_text = clean_text(cells[0].text())
             if first_cell_text == "編號":
                 continue
-            
+
             # Extract first 5 columns of data (ignore 6th column link)
             if len(cells) >= 5:
                 row_data = [
