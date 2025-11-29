@@ -10,3 +10,8 @@ dependencies = [
     "pandas>=2.3.3",
     "selectolax>=0.4.4",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.7",
+]
