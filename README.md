@@ -29,6 +29,7 @@ uv run python3 [script_name].py
 - [iicm-glossary-csv](./artifacts/iicm-glossary-csv): 從 HTML 原始檔轉換而來的 CSV，已經進行資料清理
 - [iicm_glossary.xlsx](./artifacts/iicm_glossary.xlsx): 從 CSV 轉換而來的 Excel 檔案，以工作表區分字母
 - [iicm_glossary.db.gz](./artifacts/iicm_glossary.db.gz): 從 CSV 轉換而來的壓縮 SQLite 資料庫檔案，適合用於程式讀取
+- [iicm_glossary.tbx](./artifacts/iicm_glossary.tbx): 從 CSV 轉換而來的 [TermBase eXchange (TBX)](https://en.wikipedia.org/wiki/TermBase_eXchange) 檔案，適合用來讀進翻譯軟體
 - [Google Sheet](https://link.pan93.com/iicm-glossary-gsheet): 將 Excel 檔案匯入進 Google 試算表，便於線上查詢
 
 ## SQLite 資料庫結構
