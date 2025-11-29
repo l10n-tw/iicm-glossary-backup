@@ -20,7 +20,7 @@ uv run python3 [script_name].py
 
 ## 產物結構
 
-> [!INFO]
+> [!TIP]
 > 一般使用者請直接閱讀整理過的 [Google Sheet](https://link.pan93.com/iicm-glossary-gsheet)。
 
 產物在 [artifacts](./artifacts) 目錄下。
