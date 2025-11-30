@@ -10,7 +10,8 @@
 - `crawler.py`: 從 Wayback Machine 爬取中華民國資訊學會的詞彙表 HTML
 - `html_to_csv.py`: 將中華民國資訊學會的詞彙表 HTML 轉換成 CSV
 - `csv_to_excel.py`: 將中華民國資訊學會的 CSV 詞彙表轉換成 Excel 試算表
-- `csv_to_sqlite.py`: 將中華民國資訊學會的 CSV 詞彙表轉換成 SQLite 資料庫
+- `csv_to_sqlite.py`: 將中華民國資訊學會的 CSV 詞彙表轉換成 [TermBase eXchange (TBX)](https://en.wikipedia.org/wiki/TermBase_eXchange) 詞彙表
+- `csv_to_tbx.py`: 將中華民國資訊學會的 CSV 詞彙表轉換成 SQLite 資料庫
 
 執行（需要先安裝 [uv](https://docs.astral.sh/uv/)）：
 
